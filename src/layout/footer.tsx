@@ -3,9 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Wifi, Phone, MapPin, Clock, Facebook, Youtube, Twitter, ArrowUp, CheckCircle, Star } from "lucide-react";
+import { Phone, MapPin, Clock, Facebook, Youtube, Twitter, ArrowUp, CheckCircle, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { phoneNumber, companyName, companyAddress, socialLinks } from "@/lib/utils";
+import { phoneNumber, companyAddress, socialLinks } from "@/lib/utils";
+import Image from "next/image";
+import { IMAGES } from "@/assets/images";
 
 const Footer = () => {
 	const scrollToTop = () => {
@@ -111,13 +113,14 @@ const Footer = () => {
 							className="lg:col-span-2"
 						>
 							<div className="mb-6 flex items-center space-x-3">
-								<div className="from-viettel-500 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br to-orange-600">
+								{/* <div className="from-viettel-500 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br to-orange-600">
 									<Wifi className="h-7 w-7 text-white" />
-								</div>
-								<div>
+								</div> */}
+								<Image src={IMAGES.logoNoBg} alt="Viettel Đà Nẵng" />
+								{/* <div>
 									<h3 className="text-2xl font-bold text-white">{companyName}</h3>
 									<p className="text-sm text-gray-400">Internet Cáp Quang Tốc Độ Cao</p>
-								</div>
+								</div> */}
 							</div>
 
 							<p className="mb-6 leading-relaxed text-gray-300">
@@ -233,7 +236,7 @@ const Footer = () => {
 							className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0"
 						>
 							<div className="text-sm text-gray-400">
-								<p>&copy; 2025 {companyName}. Tất cả các quyền được bảo lưu.</p>
+								<p>&copy; 2025 Lê Văn Sinh. Tất cả các quyền được bảo lưu.</p>
 							</div>
 
 							<div className="flex items-center space-x-6 text-sm text-gray-400">

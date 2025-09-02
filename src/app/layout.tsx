@@ -4,6 +4,7 @@ import { seoConfig } from "@/lib/utils";
 import "@/styles/globals.css";
 import Script from "next/script";
 import MainLayout from "@/layout/main-layout";
+import AppProvider from "./provider";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -185,7 +186,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
 				/>
-				<MainLayout>{children}</MainLayout>
+				<AppProvider>
+					<MainLayout>{children}</MainLayout>
+				</AppProvider>
 
 				{/* Analytics Scripts */}
 				<script

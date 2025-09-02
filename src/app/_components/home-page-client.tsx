@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroSection from "@/components/sections/hero-section";
-import PricingSection from "@/components/sections/pricing-section";
-import BenefitsSection from "@/components/sections/benefits-section";
-import ServicesSection from "@/components/sections/services-section";
-import ContactSection from "@/components/sections/contact-section";
+import HeroSection from "@/app/_components/sections/hero-section";
+import PricingSection from "@/app/_components/sections/pricing-section";
+import BenefitsSection from "@/app/_components/sections/benefits-section";
+import ServicesSection from "@/app/_components/sections/services-section";
+import ContactSection from "@/app/_components/sections/contact/contact-section";
 
 function HomePageClient() {
 	return (

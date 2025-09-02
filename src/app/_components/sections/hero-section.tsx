@@ -50,7 +50,7 @@ const HeroSection = () => {
 			<div className="absolute top-1/2 left-1/4 h-16 w-16 animate-pulse rounded-full bg-blue-100 opacity-50 blur-lg delay-500"></div>
 
 			<div className="container-custom relative z-10 mx-auto">
-				<div className="flex items-center justify-between gap-12 lg:grid-cols-2">
+				<div className="grid items-center justify-between gap-12 lg:grid-cols-2">
 					{/* Left Content */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}

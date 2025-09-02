@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn, phoneNumber } from "@/lib/utils";
-import { Menu, X, Phone, Wifi, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { IMAGES } from "@/assets/images";
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,17 +46,18 @@ const Header = () => {
 					isScrolled ? "bg-white/95 shadow-lg backdrop-blur-lg" : "bg-transparent",
 				)}
 			>
-				<div className="container-custom">
+				<div className="container-custom px-6">
 					<div className="flex h-16 items-center justify-between md:h-20">
 						{/* Logo */}
 						<Link href="/" className="flex items-center space-x-3">
-							<div className="from-viettel-500 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br to-orange-600">
+							{/* <div className="from-viettel-500 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br to-orange-600">
 								<Wifi className="h-6 w-6 text-white" />
-							</div>
-							<div className="hidden sm:block">
+							</div> */}
+							<Image src={IMAGES.logoNoBg} alt="Viettel Đà Nẵng" />
+							{/* <div className="hidden sm:block">
 								<h1 className="text-gradient text-xl font-bold">Viettel Đà Nẵng</h1>
 								<p className="text-xs text-gray-600">Internet Cáp Quang</p>
-							</div>
+							</div> */}
 						</Link>
 
 						{/* Desktop Navigation */}

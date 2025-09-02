@@ -22,7 +22,7 @@ export function formatSpeed(speed: number): string {
 	return `${speed}Mb`;
 }
 
-export const phoneNumber = "0974357000";
+export const phoneNumber = "0325610016";
 export const companyName = "Viettel Đà Nẵng";
 export const companyAddress = "Đà Nẵng, Việt Nam";
 export const website = "https://viettel-danang.vercel.app";

@@ -1,46 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { phoneNumber, companyAddress } from "@/lib/utils";
-import {
-	Phone,
-	MapPin,
-	Clock,
-	MessageCircle,
-	Send,
-	CheckCircle,
-	Smartphone,
-	MessageSquare,
-	Calendar,
-	User,
-	Building,
-} from "lucide-react";
+import { Phone, MapPin, Clock, MessageCircle, CheckCircle, MessageSquare, Calendar } from "lucide-react";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
+import ContactForm from "./contact-form";
 
 const ContactSection = () => {
 	const [ref, inView] = useInView({
 		triggerOnce: true,
 		threshold: 0.1,
 	});
-
-	const [formData, setFormData] = useState({
-		name: "",
-		phone: "",
-		address: "",
-		service: "",
-		message: "",
-	});
-
-	const [isSubmitted, setIsSubmitted] = useState(false);
 
 	const contactInfo = [
 		{
@@ -76,40 +51,6 @@ const ContactSection = () => {
 			color: "from-orange-500 to-red-600",
 		},
 	];
-
-	const serviceOptions = [
-		"Internet gia đình",
-		"Combo Internet + TV",
-		"Internet doanh nghiệp",
-		"Tư vấn gói cước",
-		"Hỗ trợ kỹ thuật",
-		"Khác",
-	];
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		// Handle form submission logic here
-		setIsSubmitted(true);
-
-		// Reset form after 3 seconds
-		setTimeout(() => {
-			setIsSubmitted(false);
-			setFormData({
-				name: "",
-				phone: "",
-				address: "",
-				service: "",
-				message: "",
-			});
-		}, 3000);
-	};
-
-	const handleInputChange = (field: string, value: string) => {
-		setFormData((prev) => ({
-			...prev,
-			[field]: value,
-		}));
-	};
 
 	return (
 		<section id="contact" ref={ref} className="section-padding bg-gradient-to-b from-gray-50 to-white">
@@ -237,102 +178,9 @@ const ContactSection = () => {
 								</CardTitle>
 							</CardHeader>
 							<CardContent className="p-6">
-								{!isSubmitted ? (
-									<form onSubmit={handleSubmit} className="space-y-6">
-										<div className="grid gap-4 sm:grid-cols-2">
-											<div className="space-y-2">
-												<Label htmlFor="name" className="text-sm font-medium text-gray-700">
-													<User className="mr-2 inline h-4 w-4" />
-													Họ và tên *
-												</Label>
-												<Input
-													id="name"
-													placeholder="Nhập họ và tên"
-													value={formData.name}
-													onChange={(e) => handleInputChange("name", e.target.value)}
-													required
-													className="focus:border-viettel-500 border-gray-300"
-												/>
-											</div>
-											<div className="space-y-2">
-												<Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-													<Smartphone className="mr-2 inline h-4 w-4" />
-													Số điện thoại *
-												</Label>
-												<Input
-													id="phone"
-													type="tel"
-													placeholder="Nhập số điện thoại"
-													value={formData.phone}
-													onChange={(e) => handleInputChange("phone", e.target.value)}
-													required
-													className="focus:border-viettel-500 border-gray-300"
-												/>
-											</div>
-										</div>
-
-										<div className="space-y-2">
-											<Label htmlFor="address" className="text-sm font-medium text-gray-700">
-												<MapPin className="mr-2 inline h-4 w-4" />
-												Địa chỉ lắp đặt *
-											</Label>
-											<Input
-												id="address"
-												placeholder="Nhập địa chỉ cần lắp đặt"
-												value={formData.address}
-												onChange={(e) => handleInputChange("address", e.target.value)}
-												required
-												className="focus:border-viettel-500 border-gray-300"
-											/>
-										</div>
-
-										<div className="space-y-2">
-											<Label htmlFor="service" className="text-sm font-medium text-gray-700">
-												<Building className="mr-2 inline h-4 w-4" />
-												Dịch vụ quan tâm
-											</Label>
-											<Select
-												value={formData.service}
-												onValueChange={(value) => handleInputChange("service", value)}
-											>
-												<SelectTrigger className="focus:border-viettel-500 border-gray-300">
-													<SelectValue placeholder="Chọn dịch vụ bạn quan tâm" />
-												</SelectTrigger>
-												<SelectContent>
-													{serviceOptions.map((option, index) => (
-														<SelectItem key={index} value={option}>
-															{option}
-														</SelectItem>
-													))}
-												</SelectContent>
-											</Select>
-										</div>
-
-										<div className="space-y-2">
-											<Label htmlFor="message" className="text-sm font-medium text-gray-700">
-												<MessageSquare className="mr-2 inline h-4 w-4" />
-												Ghi chú thêm
-											</Label>
-											<Textarea
-												id="message"
-												placeholder="Nhập yêu cầu hoặc thắc mắc của bạn..."
-												value={formData.message}
-												onChange={(e) => handleInputChange("message", e.target.value)}
-												rows={4}
-												className="focus:border-viettel-500 resize-none border-gray-300"
-											/>
-										</div>
-
-										<Button type="submit" variant="viettel" size="lg" className="pulse-glow w-full">
-											<Send className="mr-2 h-4 w-4" />
-											Gửi yêu cầu tư vấn
-										</Button>
-
-										<p className="text-center text-xs text-gray-500">
-											Bằng cách gửi form này, bạn đồng ý để chúng tôi liên hệ tư vấn qua số điện
-											thoại đã cung cấp.
-										</p>
-									</form>
+								<ContactForm />
+								{/* {!isSubmitted ? (
+									
 								) : (
 									<motion.div
 										initial={{ opacity: 0, scale: 0.9 }}
@@ -358,7 +206,7 @@ const ContactSection = () => {
 											</Button>
 										</div>
 									</motion.div>
-								)}
+								)} */}
 							</CardContent>
 						</Card>
 					</motion.div>
